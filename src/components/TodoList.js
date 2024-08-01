@@ -26,6 +26,7 @@ export default function TodoList() {
   };
   const addTask = () => {
     let newArr = [...todoArr];
+    if (newTask.length == 0) return;
     newArr.push({ text: newTask, completed: false });
     settodoArr(newArr);
     setnewTask("");

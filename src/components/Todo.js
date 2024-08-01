@@ -28,7 +28,7 @@ export default function Todo({ task, idx, toggleTask, editTask }) {
             {text}
           </p>
         ) : (
-          <p className="disabled" id={"todo-" + idx}>
+          <p className="disabled" id={"todo-" + idx} onClick={toggleEdit}>
             {text}
           </p>
         )
