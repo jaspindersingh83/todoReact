@@ -1,0 +1,107 @@
+h1,
+h2,
+h3,
+h4,
+h5,
+p {
+  margin: 0;
+}
+
+.todo {
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0rem 1rem 3rem 1rem rgba(0, 23, 71, 0.5);
+  height: 60%;
+  width: 60%;
+  max-width: 30rem;
+  padding: 3rem;
+  border-radius: 2rem;
+  background: white;
+}
+
+.todo h2 {
+  text-transform: uppercase;
+  height: 3rem;
+  color: #001747;
+  text-align: center;
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+#todo-list {
+  color: #8f98a8;
+}
+ul {
+  padding: 0;
+  margin: 0;
+  overflow-y: scroll;
+}
+li {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  padding: 1.3rem;
+}
+
+.disabled {
+  text-decoration: line-through;
+}
+.todo-container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 1rem;
+}
+
+.add-task {
+  width: 100%;
+  font-size: 16px;
+  border: 0.06rem solid #d2d2d2bf;
+  border-radius: 0.5rem;
+  padding: 1.25rem;
+}
+.btn {
+  color: white;
+  padding: 0.7rem 1.5rem;
+  background-color: blue;
+  border-radius: 0.3rem;
+  position: absolute;
+  right: 0.5rem;
+  bottom: 0.5rem;
+  font-size: 1.1rem;
+  cursor: pointer;
+  border: none;
+}
+
+.input {
+  display: flex;
+  position: relative;
+}
+
+input[type="checkbox"] {
+  appearance: none;
+  cursor: pointer;
+}
+
+input[type="checkbox"]::before {
+  content: "\2713";
+  display: inline-block;
+  width: 2rem;
+  font-size: 1.6rem;
+  border: solid 0.06rem grey;
+  border-radius: 50%;
+  color: transparent;
+  text-align: center;
+}
+
+input[type="checkbox"]:checked::before {
+  color: white;
+  background-color: #00d8a7;
+  border: 0.06rem solid #00d8a7;
+  border-radius: 50%;
+}
+
+.scroll {
+  height: 15rem;
+  scrollbar-width: thin;
+}
