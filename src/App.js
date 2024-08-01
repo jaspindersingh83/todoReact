@@ -21,6 +21,11 @@ function App() {
           Learn React
         </a> */}
       {/* </header> */}
+      <footer>
+        <div className="footer-container">
+          <p className="made-by">Made By: Jaspinder Singh</p>
+        </div>
+      </footer>
     </div>
   );
 }

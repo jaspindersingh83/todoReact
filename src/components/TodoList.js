@@ -1,10 +1,23 @@
-import { useState } from "react";
+//Sequence
+// map tasks
+// if task completed then strike through
+// add task
+// focus on edit task in end
+
+import { useState, useEffect } from "react";
 import Todo from "./Todo";
 import "./style.css";
 
 export default function TodoList() {
   let [newTask, setnewTask] = useState("");
-  const [todoArr, settodoArr] = useState([]);
+  const [todoArr, settodoArr] = useState(() => {
+    const intialVal = JSON.parse(localStorage.getItem("todoArr"));
+    return intialVal || [];
+  });
+
+  useEffect(() => {
+    localStorage.setItem("todoArr", JSON.stringify(todoArr));
+  }, [todoArr]);
 
   const handleInput = (event) => {
     event.preventDefault();
@@ -23,9 +36,14 @@ export default function TodoList() {
     settodoArr(newArr);
   };
 
-  const editTask = () => {};
-
-  const deleteAllTasks = () => {};
+  const editTask = (newText, idx) => {
+    todoArr[idx].text = newText;
+    let newArr = [...todoArr];
+    settodoArr(newArr);
+  };
+  const deleteAllTasks = () => {
+    settodoArr([]);
+  };
   return (
     <div className="todo">
       <h2> To Do List </h2>
@@ -49,15 +67,24 @@ export default function TodoList() {
       <ul className="scroll">
         <li id="todo-list">
           {todoArr.map((task, idx) => (
-            <Todo task={task} key={idx} idx={idx} toggleTask={toggleTask} />
+            <Todo
+              task={task}
+              key={idx}
+              idx={idx}
+              toggleTask={toggleTask}
+              editTask={editTask}
+            />
           ))}
         </li>
       </ul>
+      <hr className="counter"></hr>
       <div className="counter-container">
         <p>
-          <span id="todocount">{todoArr.length}</span>
-          <>Items Total </>
+          <span id="todocount">{todoArr.length + " Items Total"}</span>
         </p>
+        <button id="delete-button" onClick={deleteAllTasks}>
+          Delete All
+        </button>
       </div>
     </div>
   );

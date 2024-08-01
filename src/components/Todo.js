@@ -1,27 +1,50 @@
-export default function Todo({ task, idx, toggleTask }) {
+import { useState } from "react";
+
+export default function Todo({ task, idx, toggleTask, editTask }) {
   const { text, completed } = task;
-  return !completed ? (
+  const [editText, setEditText] = useState(text);
+  const [isEditing, setIsEditing] = useState(false);
+  const handleEditInput = (event) => {
+    event.preventDefault();
+    let newStr = event.target.value;
+    setEditText(newStr);
+  };
+  const toggleEdit = () => {
+    setIsEditing(!isEditing);
+  };
+  return (
     <div className="todo-container">
       <input
         type="checkbox"
         className="todo-checkbox"
         id={"input-" + idx}
+        defaultChecked={completed}
         onClick={() => toggleTask(idx)}
       />
-      <p id={"todo-" + idx}> {text}</p>
-    </div>
-  ) : (
-    <div className="todo-container">
-      <input
-        type="checkbox"
-        className="todo-checkbox"
-        id={"input-" + idx}
-        onClick={() => toggleTask(idx)}
-      />
-      <p className="disabled" id={"todo-" + idx}>
-        {" "}
-        {text}
-      </p>
+      {!isEditing ? (
+        !completed ? (
+          <p id={"todo-" + idx} onClick={toggleEdit}>
+            {" "}
+            {text}
+          </p>
+        ) : (
+          <p className="disabled" id={"todo-" + idx}>
+            {text}
+          </p>
+        )
+      ) : (
+        <input
+          value={editText}
+          type="text"
+          onChange={(event) => handleEditInput(event)}
+          onKeyDown={(event) => {
+            if (event.key == "Enter") {
+              editTask(editText, idx);
+              setIsEditing(false);
+            }
+          }}
+        />
+      )}
     </div>
   );
 }
