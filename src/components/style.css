@@ -1,110 +1,166 @@
-h1,
-h2,
-h3,
-h4,
-h5,
+:root {
+    --gradient: linear-gradient(180deg, rgba(45, 114, 1132, 0.75) 0%, hsl(221, 74%, 33%) 100%);
+    --dark: #001747;
+    --grey: #545050;
+    --grey-border: rgba(210, 210, 210, 0.75);
+    --grey-light: #eeeeee;
+    --grey-dark: #405175;
+    --blue: #2d70fd;
+    --red: #FF0000;
+    --green: #00d87a;
+    --white: #ffffff;
+}
+
+.body {
+    background: var(--gradient);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.task-list-wrapper {
+    width: 90%;
+    margin-top: 1rem;  /* Add margin to create space between input and list */
+    /* margin-bottom: 1rem;  /* Space between list and footer */
+    /* overflow-y: auto;  Allow scrolling if the list gets too long */
+    /* max-height: 300px;  Limit the height to avoid excessive scrolling */
+}
+
+.todo {
+    display: flex;
+    flex-direction: column;
+    height: 60%;
+    width: 60%;
+    background: var(--white);
+    border-radius: 2rem;
+    align-items: center;
+    max-width: 35rem;
+    box-shadow: 0rem 1rem 3rem 1rem black;
+    margin-top: 5rem;
+}
+
+.todo_container {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+h3 {
+    margin-top: 2rem;
+    text-transform: uppercase;
+}
+
+h4, h5 {
+    margin: 1rem;
+}
+
 p {
-  margin: 0;
+    margin: 0;
+    font-size: 1rem;
+    align-self: center;
 }
 
-.todo-container {
-  display: flex;
-  flex-direction: column;
-  box-shadow: 0rem 1rem 3rem 1rem rgba(0, 23, 71, 0.5);
-  height: 50%;
-  width: 60%;
-  max-width: 30rem;
-  padding: 3rem;
-  border-radius: 2rem;
-  background: white;
+p.completed {
+    text-decoration-line: line-through;
 }
 
-.todo-container h2 {
-  text-transform: uppercase;
-  height: 3rem;
-  color: #001747;
-  text-align: center;
-  margin: 0;
-  font-size: 1.5rem;
+.input_container {
+    display: flex;
+    position: relative;
+    width: 90%;
 }
 
-ul {
-  padding: 0;
-  margin: 0;
-  overflow-y: scroll;
-}
-li {
-  display: flex;
-  flex-direction: column;
-  padding: 0.7rem;
-  cursor: pointer;
-  color: #72777e;
+.input_field {
+    width: 100%;
+    font-size: 16px;
+    border-radius: 0.5rem;
+    border: 0.06rem solid var(--grey);
+    padding: 1.25rem;
 }
 
-.disabled {
-  text-decoration: line-through;
+input[type="checkbox"]::before {
+    content: "\2713";
+    display: inline-block;
+    width: 2rem;
+    border: 1px solid var(--grey);
+    border-radius: 50%;
+    text-align: center;
+    font-size: 1.6rem;
+    color: transparent;
 }
 
-.add-task {
-  width: 100%;
-  font-size: 16px;
-  border: 0.06rem solid #d2d2d2bf;
-  border-radius: 0.5rem;
-  padding: 1.25rem;
-}
-.btn {
-  color: white;
-  padding: 0.7rem 1.5rem;
-  background-color: blue;
-  border-radius: 0.3rem;
-  position: absolute;
-  right: 0.5rem;
-  bottom: 0.5rem;
-  font-size: 1.1rem;
-  cursor: pointer;
-  border: none;
+input[type="checkbox"]:checked:before {
+    color: var(--white);
+    background-color: var(--green);
+    border: 1px solid var(--green);
+    border-radius: 50%;
 }
 
-.input-container {
-  display: flex;
-  position: relative;
+input[type="checkbox"] {
+    appearance: none;
+    cursor: pointer;
+}
+
+.counter{
+    border: solid 0.06rem var(--grey-light);
+}
+
+.counter_container{
+    /* height: 2rem; */
+    font-size: 1rem;
+    color: var(--grey);
+    display: flex;
+    justify-content: space-between;
 }
 
 .scroll {
-  height: 15rem;
-  scrollbar-width: thin;
+    height: 15rem;
+    scrollbar-width: thin;
+    width: 90%;
 }
 
-.counter-container {
-  display: flex;
-  height: 2rem;
-  justify-content: space-between;
-  color: grey;
-  font-size: 1rem;
+ul{
+    padding: 0px;
+    margin: 0px;
+    overflow: scroll;
+    display: flex;
+    flex-direction: column;
 }
 
-.counter-container p {
-  align-self: center;
+li{
+    padding:0.7rem;
+    color: var(--grey);
 }
 
-#delete-button {
-  border: none;
-  color: var(--grey);
-  font-size: 1rem;
-  background-color: transparent;
-  cursor: pointer;
-  position: relative;
-}
-footer {
-  display: flex;
-  gap: 1.8rem;
-  background-color: white;
-  border-radius: 0.5rem;
-  padding: 1.2rem;
-  font-size: 1rem;
+.btn {
+    color: var(--white);
+    font-size: 1.1rem;
+    background: var(--blue);
+    border-radius: 0.3rem;
+    border: none;
+    padding: 0.7rem 1.5rem;
+    position: absolute;
+    right: 0.5rem;
+    bottom: 0.5rem;
+    cursor: pointer;
 }
 
-.counter {
-  width: 100%;
-  border: 0.06rem solid lightgray;
+.delete_btn {
+    color: var(--white);
+    font-size: 1.1rem;
+    background: var(--red);
+    border-radius: 0.3rem;
+    border: none;
+    padding: 0.7rem 1.5rem;
+    right: 0.5rem;
+    bottom: 0.5rem;
+    /* padding: 0.7rem 1.5rem; */
+    /* border: none;
+    color: var(--grey);
+    background: transparent;
+    font-size: 1rem; */
+    cursor: pointer;
 }
